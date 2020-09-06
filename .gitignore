@@ -1,0 +1,6 @@
+test/
+.DS_Store
+thunter/loganalyzer/.DS_Store
+.idea/
+__pycache__/
+thunter/__pycache__/
