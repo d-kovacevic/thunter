@@ -220,8 +220,8 @@ def get_domains_from_url(es_server, index_name):
             domain = domain.split("/")[0]
         if domain.find(":") != -1:
             domain = domain.split(":")[0]
+        domains_set.add(domain)
 
-    domains_set.add(domain)
     return domains_set
 
 
