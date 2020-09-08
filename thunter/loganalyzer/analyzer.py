@@ -262,7 +262,6 @@ def find_unknown_app_sessions_es(index_name, subnets=None):
     return unknown_app_sessions
 
 
-
 @timeit
 def get_mismatch_port_app(es_server, index_name, top_rows=10):
     return

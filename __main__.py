@@ -43,6 +43,7 @@ for row in get_unusual_port_comm(es_server=es_server, index_name="log_traffic_pa
 
 urls = get_domains_from_url(es_server=es_server, index_name="log_url_pan")
 
+
 print(len(urls))
 
 
