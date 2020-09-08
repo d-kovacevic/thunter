@@ -246,5 +246,3 @@ def send_pan_logs_to_es(es_server, index_name, csv_file_location, log_type):
 
     deque(helpers.parallel_bulk(es, get_log_row_from_csv(csv_file_location), index=index_name), maxlen=0)
     es.indices.refresh()
-
-
