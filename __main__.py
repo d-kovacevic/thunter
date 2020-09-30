@@ -7,24 +7,17 @@ import csv
 
 ES_SERVER = "127.0.0.1:9200"
 
+LOG_TYPE = {"threat": "PAN_THREAT", "traffic": "PAN_TRAFFIC", "url": "PAN_URL"}
 
-def import_logs_to_es():
+
+def import_logs_to_es(es_server, index_name, csv_file_location, log_type):
     """
     Function used to import PAN firewall logs from CSV format into ELK stack
     :return:
     """
 
-    send_pan_logs_to_es(es_server=ES_SERVER, index_name="log_traffic_pan",
-                    csv_file_location=r"test/log_traffic_pan_vm01_all.csv", log_type="PAN_TRAFFIC")
-    print("done traffic")
-
-    send_pan_logs_to_es(es_server=ES_SERVER, index_name="log_threat_pan",
-                    csv_file_location=r"test/log_threat_pan_vm01_all.csv", log_type="PAN_THREAT")
-    print("done threat")
-
-    send_pan_logs_to_es(es_server=ES_SERVER, index_name="log_url_pan",
-                        csv_file_location=r"test/log_url_pan_vm01_all.csv", log_type="PAN_URL")
-    print("done url")
+    send_pan_logs_to_es(es_server=es_server, index_name=index_name,
+                        csv_file_location=csv_file_location, log_type=log_type)
 
 
 def print_long_lived_sessions(es_server, index_name, top_rows=100):
@@ -76,6 +69,9 @@ def main():
     print_dns_session_cnt(es_server=ES_SERVER, index_name="log_traffic_pan")
     print_unknown_apps_ips(es_server=ES_SERVER, index_name="log_traffic_pan")
     print_unusual_port_comm(es_server=ES_SERVER, index_name="log_traffic_pan")
+
+    import_logs_to_es(es_server=ES_SERVER, index_name="log_threat_pan",
+                      csv_file_location=r"test/01599875_threat_log.csv", log_type=LOG_TYPE["threat"])
 
 
 if __name__ == "__main__":
